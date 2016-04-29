@@ -69,6 +69,7 @@ confusionApp
                                 }])
 
 
+
         .controller('FeedbackController', ['$scope', function($scope) {
             $scope.sendFeedback = function() {
                 console.log($scope.feedback);
