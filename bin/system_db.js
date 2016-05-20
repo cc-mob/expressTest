@@ -7,6 +7,7 @@ var System = mongoose.model('System');
 var data = {
   systems: [
     {
+<<<<<<< HEAD
       "name": "이수진ㅎ",
       "system": "MIS"
     },
@@ -27,6 +28,27 @@ var data = {
       "system": "구매"
     }
 
+=======
+      "name": "이용현",
+      "system": "Hi-OMS"
+    },
+    {
+      "name": "윤희성",
+      "system": "Hi-OMS"
+    },
+    {
+      "name": "홍지연",
+      "system": "구매"
+    },
+    {
+      "name": "김인태",
+      "system": "MIS"
+    },
+    {
+      "name": "이수진",
+      "system": "MIS"
+    }
+>>>>>>> expressTest/master
 ]};
 
 
