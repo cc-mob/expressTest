@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var SystemSchema = new Schema({
+var SysSchema = new Schema({
 
 
     name:{
@@ -13,4 +13,4 @@ var SystemSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('System', SystemSchema);
+module.exports = mongoose.model('Sys', SysSchema);

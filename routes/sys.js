@@ -1,11 +1,11 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var System = mongoose.model('System');
+var Sys = mongoose.model('Sys');
 var router = express.Router();
 
-router.get('/system',
+router.get('/sys',
     function(req,res,next){
-        System.find().sort('name').exec(function(error, results)
+        Sys.find().sort('name').exec(function(error, results)
             {
                 if(error) {
                     return next(error);

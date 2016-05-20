@@ -13,7 +13,7 @@ var main = require('./routes/main');
 var authenticate = require('./routes/authenticate');
 var dishes = require('./routes/dishes');
 var omses = require('./routes/oms');
-var systems = require('./routes/system');
+var sys = require('./routes/sys');
 
 var app = express();
 
@@ -53,7 +53,7 @@ app.use(teams);
 app.use(main);
 app.use(dishes);
 app.use(omses);
-app.use(systems);
+app.use(sys);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
