@@ -1,12 +1,13 @@
 var async = require('async');
 var mongoose = require('mongoose');
 require(process.cwd()+'./../lib/connection');
-var System = mongoose.model('System');
+var Sys = mongoose.model('Sys');
 
 
 var data = {
   systems: [
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "name": "이수진ㅎ",
       "system": "MIS"
@@ -31,45 +32,45 @@ var data = {
 =======
       "name": "이용현",
       "system": "Hi-OMS"
+=======
+      "name": "윤희성",
+      "system": "오엠에스"
+>>>>>>> expressTest/master
     },
     {
-      "name": "윤희성",
-      "system": "Hi-OMS"
+      "name": "김인태",
+      "system": "엠아이에스"
     },
     {
       "name": "홍지연",
       "system": "구매"
     },
     {
-      "name": "김인태",
-      "system": "MIS"
-    },
-    {
-      "name": "이수진",
-      "system": "MIS"
+      "name": "임지수",
+      "system": "없음"
     }
 >>>>>>> expressTest/master
 ]};
 
 
-var deleteSystem = function(callback){
-    console.info('Deleting system');
-    System.remove({}, function(error, response){
+var deleteSys = function(callback){
+    console.info('Deleting systems');
+    Sys.remove({}, function(error, response){
         if(error){
-            console.error('Error deleting system : '+ error);
+            console.error('Error deleting systems : '+ error);
         }
-        console.info('Done deleting system');
+        console.info('Done deleting systems');
         callback();
     });
 };
 
-var addSystem = function(callback){
-    console.info('Adding system');
-    System.create(data.systems, function(error){
+var addSys = function(callback){
+    console.info('Adding systems');
+    Sys.create(data.systems, function(error){
         if(error){
             console.error('Error: '+ error);
         }
-        console.info('Done Adding system');
+        console.info('Done Adding systems');
         callback();
     });
 };
@@ -77,8 +78,8 @@ var addSystem = function(callback){
 
 
 async.series([
-    deleteSystem,
-    addSystem
+    deleteSys,
+    addSys
 
 ], function(error, results){
     if(error){
