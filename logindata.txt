@@ -1,0 +1,117 @@
+{"undefined":{},
+"response":{"#text":["\r\n  ","\r\n  ","\r\n"]
+,"transaction":{"#text":["\r\n    ","\r\n    ","\r\n    ","\r\n  "],"id":{"#text":"skcc.om.EXTIF.EXTIFMgr#svcs30001"},"startDate":{"#text":"2016-05-10T14:50:22.537"},"endDate":{"#text":"2016-05-10T14:50:22.652"}}
+,"dataSet":{
+	"#text":["\r\n    ","\r\n    ","\r\n    ","\r\n  "]
+	,"message":{"#text":["\r\n      ","\r\n      ","\r\n      ","\r\n      ","\r\n      ","\r\n    "]
+	,"result":{"#text":"OK"}
+	,"messageId":{"#text":"SKFI4008"}
+	,"messageName":{"#text":"총 1 건이 검색되었습니다."}
+	,"messageReason":{}
+	,"messageRemark":{"#text":"Find"}}
+	,"fields":{"#text":["\r\n      ","\r\n    "]
+	,"reqtNo":{"#text":"EXT-000098-30001-0026163"}}
+	,"recordSet":{"@attributes":{"id":"rs_request"}
+	,"#text":["\r\n      ","\r\n      ","\r\n      ","\r\n      ","\r\n    "]
+	,"nc_pageNo":{"#text":"-1"}
+	,"nc_recordCountPerPage":{"#text":"-1"}
+	,"nc_totalRecordCount":{"#text":"-1"}
+	,"record":{
+		"#text":["\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n        ","\r\n      "]
+		,"LAST_LOGIN_IP":{"#text":"10.250.113.105"}
+		,"BUSI_UNT_ORNZ_NM":{"#text":"물류/서비스사업2팀"}
+		,"ENO":{"#text":"05578"}
+		,"NAME":{"#text":"LEE YONG HYUN"}
+		,"RSOF_NM":{"#text":"팀원"}
+		,"EMP_ID":{"#text":"S0003507"}
+		,"BUSI_UNT_NM":{"#text":"SKCC"}
+		,"LAST_LOGIN_DTM":{"#text":"2013-07-16 (화) 17:00:21"},"POS_NM":{"#text":"과장"}}}}
+}
+}
+
+response.dataSet.record.LAST_LOGIN_IP
+response.dataSet.record.BUSI_UNT_ORNZ_NM
+response.dataSet.record.ENO
+response.dataSet.record.NAME
+response.dataSet.record.RSOF_NM
+response.dataSet.record.EMP_ID
+response.dataSet.record.BUSI_UNT_NM
+response.dataSet.record.LAST_LOGIN_DTM
+
+
+"{\"response\":
+	{\"transaction\":[{\"id\":[\"skcc.om.EXTIF.EXTIFMgr#svcs30001\"],\"startDate\":[\"2016-05-11T15:26:13.777\"],\"endDate\":[\"2016-05-11T15:26:13.891\"]}],
+	 \"dataSet\":
+		[{\"message\":
+			[{\"result\":[\"OK\"],\"messageId\":[\"SKFI4008\"],\"messageName\":[\"총 1 건이 검색되었습니다.\"],\"messageReason\":[\"\"],\"messageRemark\":[\"Find\"]}],
+		  \"fields\":[{\"reqtNo\":[\"EXT-000098-30001-0000009\"]}],
+		  \"recordSet\":
+			[{\"$\":{\"id\":\"rs_request\"},
+			 \"nc_pageNo\":[\"-1\"],
+			 \"nc_recordCountPerPage\":[\"-1\"],
+			 \"nc_totalRecordCount\":[\"-1\"],
+			 \"record\":
+				[{\"LAST_LOGIN_IP\":[\"10.250.113.105\"],\"BUSI_UNT_ORNZ_NM\":[\"물류/서비스사업2팀\"],\"ENO\":[\"05578\"],\"NAME\":[\"LEE YONG HYUN\"],\"RSOF_NM\":[\"팀원\"],\"EMP_ID\":[\"S0003507\"],\"BUSI_UNT_NM\":[\"SKCC\"],\"LAST_LOGIN_DTM\":[\"2013-07-16 (화) 17:00:21\"],\"POS_NM\":[\"과장\"]}]}]
+		 }]
+	}
+	
+	
+}"
+response.dataSet[2].recordSet[4].record[0].LAST_LOGIN_IP
+
+
+
+.factory('AuthenticationService',
+    ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
+    function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+        var service = {};
+
+        service.Login = function (username, password, callback) {
+
+            /* Dummy authentication for testing, uses $timeout to simulate api call
+             ----------------------------------------------*/
+            
+            /*
+            $timeout(function(){
+                var response = { success: username === 'test' && password === 'test' };
+                if(!response.success) {
+                    response.message = 'Username or password is incorrect';
+                }
+                callback(response);
+            }, 1000);
+            */
+
+            /* Use this for real authentication
+             ----------------------------------------------*/
+            $http.post('/api/authenticate', { username: username, password: password })
+                .success(function (response) {
+                    //response.
+                
+                
+                    callback(response);
+                });
+
+        };
+ 
+        service.SetCredentials = function (username, password) {
+            var authdata = Base64.encode(username + ':' + password);
+ 
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+                    authdata: authdata
+                }
+            };
+ 
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+            $cookieStore.put('globals', $rootScope.globals);
+        };
+ 
+        service.ClearCredentials = function () {
+            $rootScope.globals = {};
+            $cookieStore.remove('globals');
+            $http.defaults.headers.common.Authorization = 'Basic ';
+        };
+ 
+        return service;
+    }])
