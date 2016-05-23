@@ -1,0 +1,23 @@
+{
+  "name": "mom-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "populate": "node ./bin/populate_db"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.13",
+    "mongoose-post-find": "0.0.2",
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0",
+    "xml2js": "^0.4.16",
+    "xmldom": "^0.1.22"
+  }
+}
