@@ -24,7 +24,7 @@ var data = {
     },
     {
       "name": "김인태",
-      "system": "엠아이에스"
+      "system": "엠아이에스2"
 >>>>>>> expressTest/master
     },
     {
